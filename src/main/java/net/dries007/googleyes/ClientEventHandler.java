@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 
 import java.util.Random;
@@ -52,8 +53,21 @@ public class ClientEventHandler
 
             float yFactor = (float) (entity.motionY * 250);
 
-            compound.setFloat("angleL", yawDiff + randAngle + swingfactor - walkfactor + yFactor);
-            compound.setFloat("angleR", yawDiff - randAngle - swingfactor + walkfactor - yFactor);
+            float l = yawDiff + randAngle + swingfactor - walkfactor + yFactor + 3, r = yawDiff - randAngle - swingfactor + walkfactor - yFactor - 3;
+
+            if (entity.isPotionActive(Potion.confusion))
+            {
+                float confusion = (float) (compound.getFloat("prevConfusion") + 25 + (Math.random() * 25));
+
+                l -= 180 - confusion;
+                r += confusion;
+
+                compound.setFloat("prevConfusion", confusion);
+            }
+            else compound.setFloat("prevConfusion", 0);
+
+            compound.setFloat("angleL", l);
+            compound.setFloat("angleR", r);
         }
     }
 }
