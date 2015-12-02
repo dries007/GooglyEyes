@@ -17,15 +17,12 @@ import net.minecraft.util.IIcon;
  */
 public class ItemGooglyEyes extends ItemArmor
 {
-    public static final ItemGooglyEyes ITEM_GOOGLY_EYES = new ItemGooglyEyes();
     private final String[] icons = {GooglyEyes.NAME + ":0", GooglyEyes.NAME + ":1", GooglyEyes.NAME + ":2", GooglyEyes.NAME + ":3"};
     private IIcon[] iconArray = new IIcon[icons.length];
 
-    public ItemGooglyEyes()
+    public ItemGooglyEyes(ItemArmor.ArmorMaterial material)
     {
-        super(ArmorMaterial.IRON, 2, 0);
-        setUnlocalizedName(GooglyEyes.NAME);
-        setTextureName(GooglyEyes.NAME + ":0");
+        super(material, 2, 0);
     }
 
     @Override

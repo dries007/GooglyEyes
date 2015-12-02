@@ -28,7 +28,7 @@ public class ClientEventHandler
             if (!(obj instanceof EntityLivingBase)) continue;
             EntityLivingBase entity = ((EntityLivingBase) obj);
             ItemStack stack = entity.getEquipmentInSlot(4); // Head slot
-            if (stack == null || stack.getItem() != ItemGooglyEyes.ITEM_GOOGLY_EYES) continue;
+            if (stack == null || !(stack.getItem() instanceof ItemGooglyEyes)) continue;
 
             NBTTagCompound compound = entity.getEntityData();
             final float prevAngleL = compound.getFloat("angleL");

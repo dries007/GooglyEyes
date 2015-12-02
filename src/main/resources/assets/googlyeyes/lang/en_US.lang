@@ -1,2 +1,7 @@
 # Items
 item.GooglyEyes.name=Googly Eyes
+item.GooglyEyes.helmetGold.name=Golden Googly Eyes
+item.GooglyEyes.helmetIron.name=Iron Googly Eyes
+item.GooglyEyes.helmetDiamond.name=Diamond Googly Eyes
+item.GooglyEyes.helmetCloth.name=Leather Googly Eyes
+item.GooglyEyes.helmetChain.name=Chain Googly Eyes
