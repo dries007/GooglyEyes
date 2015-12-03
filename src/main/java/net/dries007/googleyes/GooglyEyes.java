@@ -34,9 +34,9 @@ public class GooglyEyes
         for (final ItemArmor armor : toAdd)
         {
             ItemGooglyEyes itemGooglyEyes = new ItemGooglyEyes(armor.getArmorMaterial());
-            itemGooglyEyes.setUnlocalizedName(armor.getUnlocalizedName().replaceAll("^item\\.", ""));
             if (armor.isDamageable()) itemGooglyEyes.setMaxDamage(armor.getMaxDamage());
-            GameRegistry.registerItem(itemGooglyEyes, itemGooglyEyes.getUnlocalizedName());
+            itemGooglyEyes.setUnlocalizedName(armor.getUnlocalizedName().replaceAll("^item\\.", ""));
+            GameRegistry.registerItem(itemGooglyEyes, GameRegistry.findUniqueIdentifierFor(armor).modId + "." + GameRegistry.findUniqueIdentifierFor(armor).name);
             CraftingManager.getInstance().addShapelessRecipe(new ItemStack(itemGooglyEyes), new ItemStack(armor), new ItemStack(Blocks.glass_pane));
         }
 
