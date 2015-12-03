@@ -26,6 +26,12 @@ public class ItemGooglyEyes extends ItemArmor
     }
 
     @Override
+    public String getItemStackDisplayName(ItemStack p_77653_1_)
+    {
+        return super.getItemStackDisplayName(p_77653_1_) + " Googly Eyes";
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int p_77032_2_)
     {

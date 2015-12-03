@@ -10,7 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.util.StatCollector;
 
 import java.util.HashSet;
 
@@ -32,14 +31,12 @@ public class GooglyEyes
             toAdd.add(armor);
         }
 
-        for (ItemArmor armor : toAdd)
+        for (final ItemArmor armor : toAdd)
         {
-            String name = GooglyEyes.NAME + "." + (armor.getUnlocalizedName().startsWith("item.") ? armor.getUnlocalizedName().substring("item.".length()) : armor.getUnlocalizedName());
-
             ItemGooglyEyes itemGooglyEyes = new ItemGooglyEyes(armor.getArmorMaterial());
-            itemGooglyEyes.setUnlocalizedName(name);
-            event.getModLog().info("Added googly eyes version of {}. Localized to {}", armor.getUnlocalizedName(), StatCollector.translateToLocal(itemGooglyEyes.getUnlocalizedName() + ".name"));
-            GameRegistry.registerItem(itemGooglyEyes, name);
+            itemGooglyEyes.setUnlocalizedName(armor.getUnlocalizedName().replaceAll("^item\\.", ""));
+            if (armor.isDamageable()) itemGooglyEyes.setMaxDamage(armor.getMaxDamage());
+            GameRegistry.registerItem(itemGooglyEyes, itemGooglyEyes.getUnlocalizedName());
             CraftingManager.getInstance().addShapelessRecipe(new ItemStack(itemGooglyEyes), new ItemStack(armor), new ItemStack(Blocks.glass_pane));
         }
 
