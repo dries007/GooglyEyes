@@ -2,6 +2,7 @@ package net.dries007.googleyes;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.dries007.googleyes.api.IGooglyEyes;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,7 +16,7 @@ import net.minecraft.util.IIcon;
 /**
  * @author Dries007
  */
-public class ItemGooglyEyes extends ItemArmor
+public class ItemGooglyEyes extends ItemArmor implements IGooglyEyes
 {
     private final String[] icons = {GooglyEyes.NAME + ":0", GooglyEyes.NAME + ":1", GooglyEyes.NAME + ":2", GooglyEyes.NAME + ":3"};
     private IIcon[] iconArray = new IIcon[icons.length];
@@ -42,13 +43,6 @@ public class ItemGooglyEyes extends ItemArmor
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
     {
         return GooglyEyes.NAME + ":textures/models/armor/googly.png";
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void renderHelmetOverlay(ItemStack stack, EntityPlayer player, ScaledResolution resolution, float partialTicks, boolean hasScreen, int mouseX, int mouseY)
-    {
-        super.renderHelmetOverlay(stack, player, resolution, partialTicks, hasScreen, mouseX, mouseY);
     }
 
     @SideOnly(Side.CLIENT)

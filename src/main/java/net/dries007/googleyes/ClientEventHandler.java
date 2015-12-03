@@ -1,13 +1,16 @@
 package net.dries007.googleyes;
 
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import net.dries007.googleyes.api.IGooglyEyes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 
 import java.util.Random;
 
@@ -16,6 +19,12 @@ import java.util.Random;
  */
 public class ClientEventHandler
 {
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void tickEntity(RenderPlayerEvent.Specials.Pre event)
+    {
+        if (Minecraft.getMinecraft().theWorld == null) return;
+    }
+
     @SubscribeEvent
     public void tickEntity(TickEvent.ClientTickEvent event)
     {
@@ -28,7 +37,7 @@ public class ClientEventHandler
             if (!(obj instanceof EntityLivingBase)) continue;
             EntityLivingBase entity = ((EntityLivingBase) obj);
             ItemStack stack = entity.getEquipmentInSlot(4); // Head slot
-            if (stack == null || !(stack.getItem() instanceof ItemGooglyEyes)) continue;
+            if (stack == null || !(stack.getItem() instanceof IGooglyEyes)) continue;
 
             NBTTagCompound compound = entity.getEntityData();
             final float prevAngleL = compound.getFloat("angleL");

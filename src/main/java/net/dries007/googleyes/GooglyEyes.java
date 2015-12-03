@@ -1,10 +1,12 @@
 package net.dries007.googleyes;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.dries007.googleyes.integration.Tfc;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -31,9 +33,14 @@ public class GooglyEyes
             toAdd.add(armor);
         }
 
-        for (final ItemArmor armor : toAdd)
+        boolean tfc = Loader.isModLoaded("terrafirmacraft");
+
+        for (ItemArmor armor : toAdd)
         {
-            ItemGooglyEyes itemGooglyEyes = new ItemGooglyEyes(armor.getArmorMaterial());
+            ItemArmor itemGooglyEyes;
+            if (tfc && Tfc.applies(armor)) itemGooglyEyes = Tfc.make(armor);
+            else itemGooglyEyes = new ItemGooglyEyes(armor.getArmorMaterial());
+
             if (armor.isDamageable()) itemGooglyEyes.setMaxDamage(armor.getMaxDamage());
             itemGooglyEyes.setUnlocalizedName(armor.getUnlocalizedName().replaceAll("^item\\.", ""));
             GameRegistry.registerItem(itemGooglyEyes, GameRegistry.findUniqueIdentifierFor(armor).modId + "." + GameRegistry.findUniqueIdentifierFor(armor).name);

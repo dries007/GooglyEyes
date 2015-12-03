@@ -20,6 +20,8 @@ public class ModelBipedGoogly extends ModelBiped
 
         float pupilscale = 0.02f;
 
+        this.isSneak = entity.isSneaking();
+
         this.pupilLeft = new ModelRenderer(this, 0, 16);
         this.pupilLeft.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, pupilscale);
         this.pupilLeft.setRotationPoint(0.0F, 0.0F + pupilscale, 0.0F);
@@ -58,14 +60,14 @@ public class ModelBipedGoogly extends ModelBiped
         this.pupilRight.offsetY = 0.06f * MathHelper.cos(partialAngleR);
 
         this.bipedHead.showModel = true;
-        this.bipedHeadwear.showModel = true;
-        this.bipedBody.showModel = true;
-        this.bipedRightArm.showModel = true;
-        this.bipedLeftArm.showModel = true;
-        this.bipedRightLeg.showModel = true;
-        this.bipedLeftLeg.showModel = true;
-        this.bipedEars.showModel = true;
-        this.bipedCloak.showModel = true;
+        this.bipedHeadwear.showModel = false;
+        this.bipedBody.showModel = false;
+        this.bipedRightArm.showModel = false;
+        this.bipedLeftArm.showModel = false;
+        this.bipedRightLeg.showModel = false;
+        this.bipedLeftLeg.showModel = false;
+        this.bipedEars.showModel = false;
+        this.bipedCloak.showModel = false;
     }
 
     @Override
